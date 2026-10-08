@@ -1,0 +1,259 @@
+﻿
+@{
+    Layout = null;
+}
+@model MVCapp.Models.Usager
+<!DOCTYPE html>
+<html>
+<style>
+
+    div.container {
+        width: 100%;
+        overflow: auto;
+    }
+
+    div.left {
+        width: 50%;
+        float: left;
+    }
+
+    div.right {
+        width: 50%;
+        float: right;
+    }
+
+    #outerLeft {
+        width: 62%;
+        float: left;
+        background-color: AliceBlue;
+        padding: 0% 2%;
+    }
+
+    #outerRight {
+        width: 29%;
+        float: right;
+        padding: 0% 2%;
+    }
+
+    div.middle-left {
+        width: 21%;
+        float: left;
+        padding: 0% 2%;
+    }
+
+    div.middle-middle {
+        width: 21%;
+        float: left;
+        padding: 0% 2%;
+    }
+
+    #bottom {
+        border-style: solid;
+        border-width: 1px;
+        border-color: Lightgrey;
+        padding: 0% 2%;
+        background-color: white;
+    }
+
+    #nouvCarte {
+        background-color: white;
+        padding: 0% 2%;
+        width: 95%;
+        border-style: solid;
+        border-width: 1px;
+        border-color: Lightgrey;
+    }
+
+    #adressFact {
+        border-style: solid;
+        border-width: 1px;
+        border-color: Lightgrey;
+        padding: 0% 2%;
+        width: 95%;
+    }
+
+    input {
+        width: 100%;
+    }
+</style>
+<body>
+    <div class="container" style="border-bottom-style:solid; border-color: Lightgrey; border-width: 1px;">
+        <div style="font-size: 150%;" class="left"><p>Caisse<p></div>
+        <div style="text-align: right;" class="right"><p>1 Expédition -- <b>2 Paiement </b> -- 3 Vérification</p></div>
+    </div>
+
+    <div class="container">
+        <form action="/Home/VerifierBanque" method="post">
+            <div id="outerLeft">
+                <h1>Paiement</h1>
+                <div id="top" style="border-style:solid; border-color: Lightgrey; border-width: 1px; background-color:white; padding: 0% 2%;">
+                    <label for="rabais">Code rabais</label><br>
+                    <input type="text" id="rabais" name="rabais" pattern="[0-9]{6}"><br><br>
+                </div><br>
+
+                <div id="bottom">
+                    <div style="border-bottom-style:solid; border-color: Lightgrey; border-width: 1px;">
+                        <p style="font-weight: bold; font-size:x-large;">Carte de crédit</p>
+                    </div>
+                    <p style="font-weight: bold; font-size:large;">Renseignements sur la carte</p><br>
+                    <div id="nouvCarte" class="container">
+                        <p id="boldblue">Nouvelle carte</p>
+                        <p>Nous acceptons les cartes suivantes</p>
+                        <br>
+                        <label for="NoCarteCredit">numéro de la carte</label><br>
+                        <input type="text" id="NoCarteCredit" name="NoCarteCredit" pattern="[0-9]{16}" style="width:98%;"><br><br>
+                        <div class="container">
+                            <div class="middle-left">
+                                <label for="Mois">Mois d'expiration</label><br>
+                                <select id="Mois" name="Mois" style="width:96%;">
+                                    <option value="01" selected>01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>
+                                    <option value="06">06</option>
+                                    <option value="07">07</option>
+                                    <option value="08">08</option>
+                                    <option value="09">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
+                            </div>
+                            <div class="middle-middle">
+                                <label for="Annee">Année d'expiration</label><br>
+                                <select id="Annee" name="Annee" style="width:96%;">
+                                    <option value="2026" selected>2026</option>
+                                    <option value="2027">2027</option>
+                                    <option value="2028">2028</option>
+                                    <option value="2029">2029</option>
+                                    <option value="2030">2030</option>
+                                    <option value="2031">2031</option>
+                                    <option value="2032">2032</option>
+                                    <option value="2033">2033</option>
+                                </select>
+                            </div>
+                        </div><br>
+                        <div class="container">
+                            <div class="middle-left">
+                                <label for="CVV">Numéro CVV</label><br>
+                                <input type="text" id="CVV" name="CVV">
+                            </div>
+                            <div class="middle-middle">
+                                <small>Ce code à 3 ou 4 chiffres se trouve à l'arrière ou à l'avant de votre carte.</small>
+                            </div>
+                        </div>
+                    </div><br>
+                    <div style="border-top-style:solid; border-color: Lightgrey; border-width: 1px;">
+                        <h4>Adresse de facturation</h4>
+                    </div>
+                    <div id="adressFact">
+                        <div>
+                            <h4>Usager</h4>
+                            <hr />
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Prenom)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Prenom)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.NomFam)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.NomFam)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Rue)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Rue)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Ville)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Ville)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Province)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Province)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.CodePostal)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.CodePostal)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.NoTel)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.NoTel)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.TelExt)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.TelExt)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Courriel)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Courriel)
+                                </dd>
+
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="outerRight">
+                <h3>Résumé de la commande</h3>
+                <div class="container">
+                    <div class="left"><p>Total partiel des produits<p></div>
+                    <div style="text-align:right;" class="right"><p id="totPar">@ViewBag.Montant</p></div>
+                </div>
+                <div class="container">
+                    <div class="left"><p>Estimation des frais de livraison<p></div>
+                    <div style="text-align:right;" class="left"><p id="fraisLiv">@ViewBag.FraisLivraison</p></div>
+                </div>
+                <div class="container">
+                    <div class="left"><p>Estimation des taxes<p></div>
+                    <div style="text-align:right;" class="left"><p id="taxes">@ViewBag.Taxes</p></div>
+                </div>
+                <div class="container" style="border-top-style:solid; border-color: grey; border-width: 1px;">
+                    <div class="left"><p><b>Estimation du total</b><p></div>
+                    <div style="text-align:right;" class="left"><p id="total"><b>@ViewBag.MontantTotal</b></p></div>
+                </div><br>
+                <input type="submit" style="background-color:gold;" value="Continuer">
+            </div>
+        </form> <br><br>
+    </div>
+
+
+</body>
+</html>

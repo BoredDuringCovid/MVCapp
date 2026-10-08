@@ -1,0 +1,211 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<style>
+    input {
+        width: 100%;
+    }
+
+    div.container {
+        width: 100%;
+        overflow: auto;
+    }
+
+    div.left {
+        width: 50%;
+        float: left;
+    }
+
+    div.right {
+        width: 50%;
+        float: right;
+    }
+
+    #outerLeft {
+        width: 62%;
+        float: left;
+        background-color: AliceBlue;
+        padding: 0% 2%;
+    }
+
+    #right {
+        width: 33%;
+        float: right;
+    }
+
+    #left-top {
+        background-color: white;
+        padding: 0% 2%;
+    }
+
+    #left-bottom {
+        background-color: white;
+        padding: 0% 2%;
+    }
+
+    #inner-left-top {
+        width: 46%;
+        float: left;
+        padding: 0% 2%;
+    }
+
+    #inner-right-top {
+        width: 46%;
+        float: right;
+        padding: 0% 2%;
+    }
+
+    #inner-left-middle {
+        width: 46%;
+        float: left;
+        padding: 0% 2%;
+    }
+
+    #inner-right-middle {
+        width: 46%;
+        float: right;
+        padding: 0% 2%;
+    }
+
+    #bottom-left {
+        width: 46%;
+        float: left;
+        padding: 0% 2%;
+    }
+
+    #bottom-center {
+        width: 21%;
+        float: left;
+        padding: 0% 2%;
+    }
+
+    #bottom-right {
+        width: 21%;
+        float: right;
+        padding: 0% 2%;
+    }
+
+    div.error {
+        color: red;
+        font-size: 0.9em;
+    }
+</style>
+<head>
+    <title>Caisse</title>
+</head>
+<body>
+    <div class="container" style="border-bottom-style:solid; border-color: Lightgrey; border-width: 1px;">
+        <div style="font-size: 150%;" class="left"><p>Caisse<p></div>
+        <div style="text-align: right;" class="right"><p><b>1 Expédition</b> -- 2 Paiement -- 3 Vérification</p></div>
+    </div>
+
+    <div class="container">
+        <form id="form" action="/Home/Save" method="post" novalidate>
+            <div id="outerLeft">
+                <h1>Expédition</h1>
+                <p>* indique les renseignements obligatoires</p>
+
+                <div id="left-top">
+                    <h3>Coordonnées</h3>
+                    <label for="Courriel">* Adresse courriel</label><br>
+                    <input type="email" id="Courriel" name="Courriel" required><br>
+                    <small>Nous enverrons les mises à jour de commande à cette adresse courriel.</small>
+                    <div class="error" id="emailError"></div>
+                </div>
+
+                <div id="left-bottom">
+                    <h3>Adresse de livraison</h3>
+                    <div class="container">
+                        <div class="container" id="nomComplet">
+                            <div id="inner-left-top">
+                                <label for="prenom">* Prénom</label><br>
+                                <input type="text" id="prenom" name="prenom" required>
+                                <div class="error" id="PrenomError"></div><br><br>
+                            </div>
+                            <div id="inner-right-top">
+                                <label for="NomFam">* Nom de famille</label><br>
+                                <input type="text" id="NomFam" name="NomFam" required>
+                                <div class="error" id="NomFamError">
+                                </div>
+                            </div>
+                            <div class="container" id="numTel">
+                                <div id="inner-left-middle">
+                                    <label for="NoTel">* Numéro de téléphone</label><br>
+                                    <input type="tel" id="NoTel" name="NoTel" pattern="[0-9]{10}" required><br>
+                                    <small>Format: 1234567890</small><br>
+                                    <div class="error" id="NumTelError"></div>
+                                </div>
+                                <div id="inner-right-middle">
+                                    <label for="TelExt">Ext. (facultatif)</label><br>
+                                    <input type="text" id="TelExt" name="TelExt"><br>
+                                </div>
+                            </div>
+                        </div>
+                        <small>Nous vous appellerons uniquement en cas de problème avec la commande</small><br><br>
+
+                        <label for="Rue">* Adresse</label><br>
+                        <input type="text" id="Rue" name="Rue" required><br><br>
+
+                        <div class="container">
+                            <div id="bottom-left">
+                                <label for="ville">* Ville</label><br>
+                                <input type="text" id="ville" name="ville" required><br><br>
+                            </div>
+                            <div id="bottom-center">
+                                <label for="province">* Province</label><br>
+                                <select id="province" name="province">
+                                    <option value="null" selected>- Sélectionner -</option>
+                                    <option value="alb">Alberta</option>
+                                    <option value="bc">Colombie Britanique</option>
+                                    <option value="ipe">Ile du Prince Edward</option>
+                                    <option value="man">Manitoba</option>
+                                    <option value="nb">Nouveau-Brunswick</option>
+                                    <option value="ne">Nouvelle-Écosse</option>
+                                    <option value="ont">Ontario</option>
+                                    <option value="qc">Quebec</option>
+                                    <option value="sask">Saskatchewan</option>
+                                    <option value="tn">Terre-Neuve</option>
+                                </select><br><br>
+                            </div>
+                            <div id="bottom-right">
+                                <label for="CodePostal">* Code postal</label><br>
+                                <input type="text" id="CodePostal" name="CodePostal" pattern="[A-Za-z]{1}[0-9]{1}[A-Za-z]{1}-[0-9]{1}[A-Za-z]{1}[0-9]{1}" required><br><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="right">
+                <h3>Résumé de la commande</h3>
+                <div class="container">
+                    <div class="left"><p>Total partiel des produits<p></div>
+                    <div style="text-align:right;" class="right"><p id="totPar">@ViewBag.Montant</p></div>
+                </div>
+                <div class="container">
+                    <div class="left"><p>Estimation des frais de livraison<p></div>
+                    <div style="text-align:right;" class="left"><p id="fraisLiv">@ViewBag.FraisLivraison</p></div>
+                </div>
+                <div class="container">
+                    <div class="left"><p>Estimation des taxes<p></div>
+                    <div style="text-align:right;" class="left"><p id="taxes">@ViewBag.Taxes</p></div>
+                </div>
+                <div class="container" style="border-top-style:solid; border-color: grey; border-width: 1px;">
+                    <div class="left"><p><b>Estimation du total</b><p></div>
+                    <div style="text-align:right;" class="left"><p id="total"><b>@ViewBag.MontantTotal</b></p></div>
+                </div><br>
+                <input type="submit" style="background-color:gold;" value="Continuer">
+            </div>
+        </form> <br><br>
+    </div>
+    </div>
+
+   
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+﻿@model MVCapp.Models.Transaction
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+</style>
+<body>
+    <table style="width:70%">
+        <tr style="background-color:LightSteelBlue;">
+            <th colspan="4">Compte Vendeur</th>
+        </tr>
+        <tr style="background-color:LightSteelBlue;">
+            <th style="width:15%">Date</th>
+            <th style="width:55%">Nom du Client</th>
+            <th style="width:15%">Montant de la transaction</th>
+            <th style="width:15%">Balance</th>
+        </tr>
+        <tr style="background-color:LightSteelBlue;">
+            <th colspan="2">Solde du Compte :</th>
+            <th></th>
+            <th>@ViewBag.SoldeVendeur</th>
+        </tr>
+        @{
+            foreach (var t in ViewBag.ListToutesTransactions)
+            {
+                <tr>
+                    <th>@t.DateTransaction</th>
+                    <th>@t.Usager.Prenom</th>
+                    <th>@t.MontantTransaction</th>
+                    <th></th>
+                </tr>
+            }
+
+        }
+    </table>
+    <br />
+    <table style="width:70%">
+        <tr style="background-color:LightSteelBlue;">
+            <th colspan="4">Compte Client</th>
+        </tr>
+        <tr style="background-color:LightSteelBlue;">
+            <th style="width:15%">Date</th>
+            <th style="width:55%">Nom du Produit</th>
+            <th style="width:15%">Montant de la transaction</th>
+            <th style="width:15%">Balance</th>
+        </tr>
+        <tr style="background-color:LightSteelBlue;">
+            <th colspan="2">Solde du Compte :</th>
+            <th></th>
+            <th>@ViewBag.SoldeUsager</th>
+        </tr>
+        @{ 
+            foreach(var t in ViewBag.ListTransactionUsager)
+            {
+                <tr>
+                    <th>@t.DateTransaction</th>
+                    <th></th>
+                    <th>@t.MontantTransaction</th>
+                    <th></th>
+                </tr>
+            }
+        }
+        
+
+    </table>
+</body>
+</html>

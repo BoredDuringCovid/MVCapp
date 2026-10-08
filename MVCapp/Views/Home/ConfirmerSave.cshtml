@@ -1,0 +1,98 @@
+﻿@model MVCapp.Models.Usager
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ConfirmerSave</title>
+</head>
+<body>
+    <div>
+        <h4>Usager</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Prenom)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Prenom)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NomFam)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NomFam)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Rue)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Rue)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Ville)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Ville)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Province)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Province)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CodePostal)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CodePostal)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NoTel)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NoTel)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TelExt)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TelExt)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Courriel)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Courriel)
+            </dd>
+    
+        </dl>
+    </div>
+    @*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@
+</body>
+</html>
