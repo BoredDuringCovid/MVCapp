@@ -88,7 +88,7 @@
                 <h1>Paiement</h1>
                 <div id="top" style="border-style:solid; border-color: Lightgrey; border-width: 1px; background-color:white; padding: 0% 2%;">
                     <label for="rabais">Code rabais</label><br>
-                    <input type="text" id="rabais" name="rabais" pattern="[0-9]{6}"><br><br>
+                    <input type="number" id="rabais" name="rabais" pattern="[0-9]{6}"><br><br>
                 </div><br>
 
                 <div id="bottom">
@@ -101,7 +101,7 @@
                         <p>Nous acceptons les cartes suivantes</p>
                         <br>
                         <label for="NoCarteCredit">numéro de la carte</label><br>
-                        <input type="text" id="NoCarteCredit" name="NoCarteCredit" pattern="[0-9]{16}" style="width:98%;"><br><br>
+                        <input type="number" id="NoCarteCredit" name="NoCarteCredit" pattern="[0-9]{16}" style="width:98%;"><br><br>
                         <div class="container">
                             <div class="middle-left">
                                 <label for="Mois">Mois d'expiration</label><br>
@@ -137,7 +137,7 @@
                         <div class="container">
                             <div class="middle-left">
                                 <label for="CVV">Numéro CVV</label><br>
-                                <input type="text" id="CVV" name="CVV">
+                                <input type="number" id="CVV" name="CVV">
                             </div>
                             <div class="middle-middle">
                                 <small>Ce code à 3 ou 4 chiffres se trouve à l'arrière ou à l'avant de votre carte.</small>
@@ -149,9 +149,17 @@
                     </div>
                     <div id="adressFact">
                         <div>
-                            <h4>Usager</h4>
+                            <h4>Adresse de facturation</h4>
                             <hr />
-                            <dl class="dl-horizontal">
+                            <p>@Html.DisplayFor(model => model.Prenom) @Html.DisplayFor(model => model.NomFam)</p>
+                            <p>
+                                @Html.DisplayFor(model => model.Rue)<br />
+                                @Html.DisplayFor(model => model.Ville)<br />
+                                @Html.DisplayFor(model => model.Province)<br />
+                                @Html.DisplayFor(model => model.CodePostal)<br />
+                                @Html.DisplayFor(model => model.NoTel) @Html.DisplayFor(model => model.TelExt)
+                            </p>
+                            @*<dl class="dl-horizontal">
                                 <dt>
                                     @Html.DisplayNameFor(model => model.Prenom)
                                 </dt>
@@ -222,7 +230,7 @@
 
                                 <dd>
                                     @Html.DisplayFor(model => model.Courriel)
-                                </dd>
+                                </dd>*@
 
                             </dl>
                         </div>

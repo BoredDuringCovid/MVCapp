@@ -12,13 +12,20 @@ namespace MVCapp.Controllers
     {
         private StoreContext db = new StoreContext();
         private double fraisLivraison = 10.00;
-        private int noPanier = 2;
+        private int noPanier = 1;
         // GET: Home
         public ActionResult Index()
         {
             using(db)
             {
-                var Panier = ObtenirPanier(db);
+                var Panier = db.Paniers.Where(p => p.PanierId == noPanier).Include("Produit").FirstOrDefault();
+
+                double montant = Panier.Produit.Prix;
+                double taxes = (montant + fraisLivraison) * 0.15;
+                Session["montant"] = montant;
+                Session["taxes"] = taxes;
+                Session["montantTotal"] = montant + fraisLivraison + taxes;
+                Session["Panier"] = Panier;
 
                 ViewBag.Montant = Session["montant"];
                 ViewBag.FraisLivraison = fraisLivraison;
@@ -38,21 +45,28 @@ namespace MVCapp.Controllers
                 var result = db.Usagers.SingleOrDefault(u => u.Prenom == usager.Prenom && u.NomFam == usager.NomFam);
                 if (result == null)
                 {
-                    var query = from u in db.Usagers
-                                orderby u.Id
-                                select u;
-                    var usagerId = query.Last().Id;
-                    usagerId++;
-
-                    usager.Id = usagerId;
                     db.Usagers.Add(usager);
+                    db.SaveChanges();
+                    result = db.Usagers.SingleOrDefault(u => u.Prenom == usager.Prenom && u.NomFam == usager.NomFam);
+                    
 
                     CompteClient compte = new CompteClient();
                     compte.NoCarteCredit = 1234567890123456;
                     compte.Solde = 1000.00;
                     compte.Suspendu = false;
-                    compte.ClientId = usagerId;
+                    compte.ClientId = result.Id;
                     db.CompteClients.Add(compte);
+                }
+                else
+                {
+                    result.Rue = usager.Rue;
+                    result.Ville = usager.Ville;
+                    result.Province = usager.Province;
+                    result.CodePostal = usager.CodePostal;
+                    result.NoTel = usager.NoTel;
+                    result.TelExt = usager.TelExt;
+                    result.Courriel = usager.Courriel;
+
                 }
 
                 db.SaveChanges();
@@ -139,6 +153,11 @@ namespace MVCapp.Controllers
             return View(viewName);
         }
 
+        public ActionResult retourPagePaiement()
+        {
+            return View("Paiement", Session["acheteur"]);
+        }
+
         public void Rollback(StoreContext context)
         { 
             var changedEntries = context.ChangeTracker.Entries()
@@ -175,6 +194,11 @@ namespace MVCapp.Controllers
 
             return Panier;
         }
+
+        //public void removeSQLInjection(Usager usager)
+        //{
+        //    if (usager.Prenom.Contains(""))
+        //}
 
     }
 }
